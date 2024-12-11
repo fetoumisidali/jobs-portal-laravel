@@ -1,7 +1,6 @@
 @props(['type','message'])
 
 
-@if(session()->has($type))
 <div
     x-show='show'
     x-data="{show : true}"
@@ -13,4 +12,3 @@
 ])>
     <p>{{$message}}</p>
 </div>
-@endif

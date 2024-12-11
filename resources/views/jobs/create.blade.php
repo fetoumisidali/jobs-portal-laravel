@@ -27,8 +27,8 @@
 
             <div class="mb-4">
                 <label class="block text-gray-700 mb-2" for="remote">Remote</label>
-                <x-inputs.checkbox label="Yes" id="yes" name="remote" value=1 />
-                <x-inputs.checkbox label="No" id="no" name="remote" value=0 />
+                <x-inputs.checkbox  name="remote" 
+                :choices="['Yes' => true,'No' => false]" />
                 @error('remote')
                     <p class="text-red-500 mt-1 text-sm">{{ $message }}</p>
                 @enderror
@@ -38,17 +38,14 @@
             
             <div class="mb-4">
                 <label class="block text-gray-700 mb-2" for="job_type">Job type</label>
-                <x-inputs.checkbox label="Full Time" id="full-time"
-                name="job_type" value="Full Time" />
-                <x-inputs.checkbox
-                 label="Part time" id="part-time"
-                  name="job_type" value="Part time" />
-                <x-inputs.checkbox
-                 label="Contract" id="contract"
-                  name="job_type" value="Contract" />
-                <x-inputs.checkbox
-                 label="Internship" id="internship"
-                  name="job_type" value="Internship" />
+                <x-inputs.checkbox name="job_type" 
+                :choices="[
+                'Full Time' => 'Full Time',
+                'Part time' => 'Part time',
+                'Contract' => 'Contract',
+                'Internship' => 'Internship'
+                ]" />
+
                 @error('job_type')
                         <span class="text-sm text-red-500">{{$message}}</span>
                 @enderror
