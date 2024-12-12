@@ -14,6 +14,9 @@ laravel new jobs-portal
 ### Jobs Page (Desktop)
 ![Jobs Page](/screenshots/Jobs.png "Jobs Page")
 
+### Jobs Page (No Job) (Desktop)
+![Jobs Page No Job](/screenshots/Jobs-No_Jobs.png "Jobs Page No Job")
+
 ### Job Details Page (Desktop)
 ![Job Details Page](/screenshots/Details.png "Job Details Page")
 

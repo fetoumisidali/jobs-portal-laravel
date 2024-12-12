@@ -21,7 +21,7 @@
         </span></li>
         <li><strong>Requirements: </strong>{{$job['requirements']}}</li>
     </ul>
-    <a href="{{route('jobs.show',['id' => $job['id']])}}" class="text-indigo-700
+    <a href="{{route('jobs.show',['job' => $job])}}" class="text-indigo-700
     text-base shadow-sm
      rounded w-full px-5 py-2.5 font-semibold bg-indigo-100 block text-center
      hover:bg-indigo-200">

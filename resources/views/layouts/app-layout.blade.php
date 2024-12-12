@@ -18,15 +18,7 @@
     <x-header />
 
 
-    <div class="container mx-auto">
-        @if (session()->has('error'))
-            <x-inputs.alert type="error" message="{{ session('error') }}" />
-        @endif
-        @if (session()->has('success'))
-            <x-inputs.alert type="success" message="{{ session('success') }}" />
-        @endif
 
-    </div>
 
 
 
@@ -34,8 +26,18 @@
         <x-hero />
     @endif
 
+    <div class="container mx-auto">
+            @if (session()->has('error'))
+                <x-inputs.alert type="error" message="{{ session('error') }}" />
+            @endif
+            @if (session()->has('success'))
+                <x-inputs.alert type="success" message="{{ session('success') }}" />
+            @endif
+
+        </div>
 
     <div class="container mx-auto m-4">
+        
         {{ $slot }}
     </div>
 
