@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
@@ -25,8 +26,18 @@ Route::prefix('/jobs')->as('jobs.')->group(function () {
 
 });
 
-Route::get('dashboard',[DashboardController::class,'index'])
-->middleware("auth")->name('dashboard');
+Route::middleware('auth')->group(function(){
+    Route::get('dashboard', [DashboardController::class, 'index'])
+    ->name('dashboard');
+    Route::patch('profile', [ProfileController::class, 'update'])
+    ->name('profile.update');
+    Route::delete('profile', [ProfileController::class, 'destroy'])
+    ->name('profile.destroy');
+
+
+});
+
+
 
 
 

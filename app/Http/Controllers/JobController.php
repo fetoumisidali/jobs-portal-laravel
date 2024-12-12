@@ -59,6 +59,11 @@ class JobController extends Controller
         $this->authorize('delete', $job);
         $this->jobService->deleteJob($job);
 
+        if(request()->query('from') == 'dashboard'){
+            return redirect()->back()
+            ->with('success', 'Job Deleted');
+        }
+
         return redirect()
             ->route('home')
             ->with('success', 'Job Deleted');

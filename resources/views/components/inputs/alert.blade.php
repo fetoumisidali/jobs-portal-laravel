@@ -8,7 +8,7 @@
  @class([
     'bg-red-500' => $type == 'error', 
     'bg-green-500' => $type == 'success', 
-    'p-4 mx-6 my-4 text-white rounded-xl '
+    'p-4 mx-6 my-4 text-white rounded'
 ])>
     <p>{{$message}}</p>
 </div>

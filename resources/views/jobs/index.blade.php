@@ -14,12 +14,15 @@
                 h-full
                 md:col-span-3 flex flex-col space-y-6 items-center justify-center content-center">
                     <img class="h-96" src="/images/illustrators/no-data.svg" alt="">
-                    <a href={{ route('jobs.create') }}
+                    @auth
+                        <a href={{ route('jobs.create') }}
                         class="bg-blue-900 hover:opacity-90  text-white 
-            font-medium  px-4 py-2 rounded">
+                                    font-medium  px-4 py-2 rounded">
                         <i class="fa-solid fa-pen-to-square"></i>
                         Create
                     </a>
+                    @endauth
+                    
                 </div>
             @endforelse
         </div>

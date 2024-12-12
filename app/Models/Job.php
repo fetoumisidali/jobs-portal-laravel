@@ -30,8 +30,8 @@ class Job extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function scopeRecent($query, $limit = 3)
+    public function scopeRecent($query)
     {
-        return $query->orderBy('created_at', 'desc')->take($limit);
+        return $query->orderBy('created_at', 'desc');
     }
 }
