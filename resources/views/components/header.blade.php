@@ -1,14 +1,15 @@
 <header x-data="{ 'open': false }" class="bg-blue-900 text-white p-4">
     <div class="container mx-auto justify-between flex items-center ">
         <h1 class="cursor-pointer select-none text-3xl font-semibold">Jobs Portal</h1>
+
         <nav class="hidden md:flex space-x-4 items-center">
             <x-nav-link routeName="home">Home</x-nav-link>
             <x-nav-link routeName="jobs.index">Jobs</x-nav-link>
 
             @auth
-                <a href=""
-                    class="text-white py-2 border-b-2 border-b-transparent
-             hover:border-b-2 hover:border-b-white">Dashboard</a>
+
+                <x-nav-link routeName="dashboard">Dashboard</x-nav-link>
+
             @endauth
 
             @guest
@@ -51,9 +52,9 @@
         <x-nav-link routeName="home" :mobile=true>Home</x-nav-link>
         <x-nav-link routeName="jobs.index" :mobile=true>Jobs</x-nav-link>
         @auth
-            <a href="" class="block px-4 py-2 hover:bg-blue-800">Dashboard</a>
+            <x-nav-link routeName="dashboard" :mobile=true>Dashboard</x-nav-link>
         @endauth
-        
+
         @guest
             <x-nav-link routeName="login" :mobile=true>Log In</x-nav-link>
             <x-nav-link routeName="register" :mobile=true>Register</x-nav-link>

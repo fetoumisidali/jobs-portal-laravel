@@ -19,9 +19,6 @@
 
 
 
-
-
-
     @if (request()->routeIs('home'))
         <x-hero />
     @endif
