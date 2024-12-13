@@ -22,6 +22,7 @@ class JobController extends Controller
         return view("jobs.index", compact('jobs'));
     }
 
+
     public function create()
     {
         return view('jobs.create');
