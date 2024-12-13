@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\ProfileController;
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
@@ -26,6 +27,12 @@ Route::prefix('/jobs')->as('jobs.')->group(function () {
 
 });
 
+Route::prefix('/saved')->middleware('auth')->as('saved.')->group(function () {
+    Route::get('/', [BookmarkController::class,'index'])->name('index');
+    Route::post('/{job}', [BookmarkController::class, 'store'])->name('store');
+    Route::delete('/{job}', [BookmarkController::class, 'destroy'])->name('destroy');
+});
+
 Route::middleware('auth')->group(function(){
     Route::get('dashboard', [DashboardController::class, 'index'])
     ->name('dashboard');
@@ -33,8 +40,6 @@ Route::middleware('auth')->group(function(){
     ->name('profile.update');
     Route::delete('profile', [ProfileController::class, 'destroy'])
     ->name('profile.destroy');
-
-
 });
 
 

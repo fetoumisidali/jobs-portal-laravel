@@ -9,6 +9,7 @@
             @auth
 
                 <x-nav-link routeName="dashboard">Dashboard</x-nav-link>
+                <x-nav-link routeName="saved.index">Saved</x-nav-link>
 
             @endauth
 
@@ -53,6 +54,7 @@
         <x-nav-link routeName="jobs.index" :mobile=true>Jobs</x-nav-link>
         @auth
             <x-nav-link routeName="dashboard" :mobile=true>Dashboard</x-nav-link>
+            <x-nav-link routeName="saved.index" :mobile=true>Saved</x-nav-link>
         @endauth
 
         @guest

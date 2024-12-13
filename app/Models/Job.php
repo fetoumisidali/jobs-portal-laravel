@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Job extends Model
 {
@@ -33,5 +34,10 @@ class Job extends Model
     public function scopeRecent($query)
     {
         return $query->orderBy('created_at', 'desc');
+    }
+
+    public function bookmarkedByUsers():BelongsToMany{
+        return $this->belongsToMany(User::class, 'user_job_bookmarks')
+        ->withTimestamps();
     }
 }

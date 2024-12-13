@@ -30,7 +30,7 @@ class JobController extends Controller
     public function store(CreateJobRequest $request)
     {
         $this->jobService->createJob($request);
-        return redirect()->back()->with('success', 'Job Created');
+        return redirect()->route('jobs.create')->with('success', 'Job Created');
     }
 
     public function show(Job $job)

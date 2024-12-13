@@ -35,4 +35,5 @@ class CreateJobRequest extends FormRequest
             'salary' => 'required|integer|min:0',
         ];
     }
+
 }

@@ -72,7 +72,7 @@
                 </div>
             </div>
 
-            <div class="container mx-auto p-4">
+            <div class="container mx-auto p-4 ">
                 <h2 class="text-xl font-semibold mb-4">Job Details</h2>
                 <div class="bg-white shadow p-4 rounded">
                     <h3 class="text-lg font-semibold mb-2 text-blue-500">
@@ -116,7 +116,7 @@
             </div>
 
         </section>
-        <aside class="p-3 order-first md:order-last bg-white rounded shadow">
+        <aside class="p-3 order-first md:order-last bg-white rounded shadow h-min">
             <h1 class="text-xl mb-3 text-center font-bold">Company Info</h1>
             <img class="w-48 mx-auto mb-4" src="/images/logo.png" alt="">
             <h4 class="text-lg font-bold">{{ $job->company_name }}</h4>
@@ -125,13 +125,31 @@
             </p>
 
             @auth
-                <a href=""
-                    class="block font-bold mx-2
-             rounded-full mt-10 bg-blue-700 hover:bg-blue-800 text-white text-center py-3"
-                    href="">
-                    <i class="fa-regular fa-bookmark mr-2"></i>
-                    Bookmark This Job
-                </a>
+                <form
+                    action="{{ auth()->user()->bookmarkedJobs()->where('job_id', $job->id)->exists()
+                        ? route('saved.destroy', ['job' => $job])
+                        : route('saved.store', ['job' => $job]) }}"
+                    method="POST">
+                    @csrf
+                    @if (auth()->user()->bookmarkedJobs()->where('job_id', $job->id)->exists())
+                        @method('DELETE')
+                        <button type="submit" href=""
+                            class="block font-bold mx-2
+             rounded-full mt-10 bg-red-500 hover:bg-red-700 text-white text-center py-3 px-4"
+                            href="">
+                            <i class="fa-regular fa-bookmark mr-2"></i>
+                            Remove Bookmark
+                        </button>
+                    @else
+                        <button type="submit" href=""
+                            class="block font-bold mx-2
+             rounded-full mt-10 bg-blue-700 hover:bg-blue-800 text-white text-center py-3 px-4"
+                            href="">
+                            <i class="fa-regular fa-bookmark mr-2"></i>
+                            Bookmark This Job
+                        </button>
+                    @endif
+                </form>
             @endauth
 
         </aside>
