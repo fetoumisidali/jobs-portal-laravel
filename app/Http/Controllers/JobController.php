@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateJobRequest;
 use App\Models\Job;
+use App\Models\User;
 use App\Service\JobService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
@@ -68,5 +69,15 @@ class JobController extends Controller
         return redirect()
             ->route('home')
             ->with('success', 'Job Deleted');
+    }
+
+
+
+    public function showUserJobs($username)
+    {
+
+        $jobs = $this->jobService->getJobsByUsername($username);
+
+        return view('jobs.user_jobs', compact('username', 'jobs'));
     }
 }

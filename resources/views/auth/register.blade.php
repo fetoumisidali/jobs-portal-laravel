@@ -8,7 +8,7 @@
             <h2 class="text-4xl text-center font-bold mb-4">Register</h2>
             <form action="{{ route('register') }}" method="POST">
                 @csrf
-                <x-inputs.text type="name" id="name" name="name" label="Name" placeholder="enter you email" />
+                <x-inputs.text type="username" id="username" name="username" label="Username" placeholder="enter you email" />
                 <x-inputs.text type="email" id="email" name="email" label="Email" placeholder="enter you email" />
                 <x-inputs.text type="password" id="password" name="password" label="Password" placeholder="enter you password" />
                 <button type="submit"

@@ -13,7 +13,8 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::prefix('/jobs')->as('jobs.')->group(function () {
     Route::get('/', [JobController::class, 'index'])->name('index');
-    //Route::get('/', [JobController::class, 'search'])->name('search');
+    Route::get('/user/{username}', [JobController::class, 'showUserJobs'])
+    ->name('user_jobs');
     Route::get('/create', [JobController::class, 'create'])->name('create')
     ->middleware('auth');
     Route::post('/', [JobController::class, 'store'])->name('store')

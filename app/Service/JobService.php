@@ -38,6 +38,15 @@ class JobService
     }
 
 
+    public function getJobsByUsername(string $username,int $perPage = 6){
+
+        $user = User::where('username', $username)->firstOrFail();
+
+        $jobs = $user->jobList()->recent()->paginate($perPage);
+        return $jobs;
+    }
+    
+
 
     public function getRecentJobs()
     {

@@ -4,9 +4,10 @@
     </x-slot>
     <div class="grid grid-col-1 md:grid-cols-3 gap-6">
         <section class="md:col-span-2">
-            <div class="rounded p-6 bg-white shadow">
+            <div class="rounded p-6 bg-white md:shadow">
                 <div class="flex justify-between items-center">
-                    <a href={{ route('jobs.index') }}
+                    <a href={{ url()->previous() != url()->current() 
+                    ? url()->previous() : route('jobs.index') }}
                         class="text-blue-700
                      hover:text-blue-500 hover:scale-95">
                         <i class="fa-solid fa-circle-arrow-left"></i>
@@ -46,7 +47,8 @@
                     <ul class="my-4 p-4 bg-gray-100">
                         <li class="mb-2">
                             <strong>Posted By: </strong>
-                            {{ $job->user->name }}
+                            <a class="text-blue-500 hover:text-blue-700"  href="{{route('jobs.user_jobs',
+                            ['username' => $job->user->username])}}">{{ $job->user->username }}</a>
                         </li>
                         <li class="mb-2">
                             <strong>Job Type: </strong>
@@ -74,7 +76,7 @@
 
             <div class="container mx-auto p-4 ">
                 <h2 class="text-xl font-semibold mb-4">Job Details</h2>
-                <div class="bg-white shadow p-4 rounded">
+                <div class="bg-white md:shadow p-4 rounded">
                     <h3 class="text-lg font-semibold mb-2 text-blue-500">
                         Job Requirement
                     </h3>
@@ -116,7 +118,7 @@
             </div>
 
         </section>
-        <aside class="p-3 order-first md:order-last bg-white rounded shadow h-min">
+        <aside class="p-3 order-first md:order-last bg-white rounded md:shadow h-min">
             <h1 class="text-xl mb-3 text-center font-bold">Company Info</h1>
             <img class="w-48 mx-auto mb-4" src="/images/logo.png" alt="">
             <h4 class="text-lg font-bold">{{ $job->company_name }}</h4>

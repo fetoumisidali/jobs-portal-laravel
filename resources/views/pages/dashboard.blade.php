@@ -12,7 +12,7 @@
                     <form action="{{ route('profile.update') }}" method="POST">
                         @csrf
                         @method('PATCH')
-                        <x-inputs.text id="name" name="name" label="Name" value="{{ $user->name }}" />
+                        <x-inputs.text id="username" name="username" label="Username" value="{{ $user->username }}" />
                         <x-inputs.text id="email" name="email" type="email" label="Email address"
                             value="{{ $user->email }}" />
                         <button type="submit"
