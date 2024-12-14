@@ -6,8 +6,7 @@
         <section class="md:col-span-2">
             <div class="rounded p-6 bg-white md:shadow">
                 <div class="flex justify-between items-center">
-                    <a href={{ url()->previous() != url()->current() 
-                    ? url()->previous() : route('jobs.index') }}
+                    <a href={{ url()->previous() != url()->current() ? url()->previous() : route('jobs.index') }}
                         class="text-blue-700
                      hover:text-blue-500 hover:scale-95">
                         <i class="fa-solid fa-circle-arrow-left"></i>
@@ -47,8 +46,8 @@
                     <ul class="my-4 p-4 bg-gray-100">
                         <li class="mb-2">
                             <strong>Posted By: </strong>
-                            <a class="text-blue-500 hover:text-blue-700"  href="{{route('jobs.user_jobs',
-                            ['username' => $job->user->username])}}">{{ $job->user->username }}</a>
+                            <a class="text-blue-500 hover:text-blue-700"
+                                href="{{ route('jobs.user_jobs', ['username' => $job->user->username]) }}">{{ $job->user->username }}</a>
                         </li>
                         <li class="mb-2">
                             <strong>Job Type: </strong>
@@ -96,12 +95,43 @@
 
                 @auth
                     @can('apply', $job)
-                        <a href=""
+                        <button x-data='' x-on:click="$dispatch('open-modal', 'apply-modal')"
                             class="m-4 shadow-sm text-center text-base font-medium
                 text-indigo-700 block w-full px-5 py-2.5 bg-indigo-100
                 hover:bg-indigo-200">
                             Apply
-                        </a>
+                        </button>
+                        <x-modal name="apply-modal" :show="$errors->any()">
+                            <form action="{{ route('applicant.store',['job' => $job]) }}" method="POST">
+                                @csrf
+                                <h1 class="text-lg text-black mb-3">Apply For <strong>{{ $job->title }}</strong></h1>
+                                <x-inputs.text id="full_name" name="full_name" label="Full Name"
+                                    placeholder="enter your full name" required />
+                                <x-inputs.text type="email" id="email" name="email" label="Email"
+                                    placeholder="enter your email" required />
+                                <x-inputs.text type="phone_number" id="phone_number" name="phone_number" label="phone Number"
+                                    placeholder="enter your phone number" required />
+                                <div class="mb-4">
+                                    <textarea class="w-full focus:outline-none
+                                 border rounded p-3 resize-none"
+                                        placeholder="write your message here"
+                                         name="message" id="message" cols="30" rows="6" required></textarea>
+                                    @error('message')
+                                        <p class="text-red-500 mt-1 text-sm">{{ $message }}</p>
+                                    @enderror
+                                </div>
+
+                                <div class="flex space-x-3">
+                                    <button type="button" x-on:click="$dispatch('close-modal', 'apply-modal')"
+                                        class="py-2 px-4 bg-red-500 rounded text-white hover:opacity-90">
+                                        Cancel
+                                    </button>
+                                    <button type="submit" class="py-2 px-4 bg-blue-500 rounded text-white hover:opacity-90">
+                                        Submit
+                                    </button>
+                                </div>
+                            </form>
+                        </x-modal>
                     @endcan
                 @else
                     <div

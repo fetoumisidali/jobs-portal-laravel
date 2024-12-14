@@ -29,7 +29,8 @@
                             @method('DELETE')
 
                             <!-- Password Confirmation -->
-                            <x-inputs.text required type="password" placeholder="Enter password to delete Account" id="password" name="password" label="Password"/>
+                            <x-inputs.text required type="password" placeholder="Enter password to delete Account"
+                                id="password" name="password" label="Password" />
 
                             <!-- Delete Button -->
                             <button type="submit"
@@ -73,15 +74,13 @@
                     </div>
                 @empty
                     <div class="m-3">
-                        <div class="flex justify-between md:justify-start items-center  space-x-3">
-                            <h3 class="text-lg">No Available Job</h3>
-                            <a class="px-4 py-2 text-white
-                         bg-blue-700 font-semibold hover:bg-blue-900
-                         shadow-lg rounded-lg"
+                        <h3 class="text-lg">you don't have any job start and
+                            <a class="text-blue-700 font-medium hover:text-blue-900"
                                 href="{{ route('jobs.create') }}">
                                 Create Job
                             </a>
-                        </div>
+                        </h3>
+
                     </div>
                 @endforelse
 

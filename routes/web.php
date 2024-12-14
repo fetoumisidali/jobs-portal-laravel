@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\DashboardController;
@@ -9,6 +10,9 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', HomeController::class)->name('home');
+Route::get('/me', function(){
+    return view('pages.me');
+});
 
 
 Route::prefix('/jobs')->as('jobs.')->group(function () {
@@ -42,6 +46,12 @@ Route::middleware('auth')->group(function(){
     ->name('profile.update');
     Route::delete('profile', [ProfileController::class, 'destroy'])
     ->name('profile.destroy');
+});
+
+Route::prefix('/applicant')
+->middleware('auth')->as('applicant.')->group(function(){
+    Route::post('/{job}', [ApplicantController::class,'store'])->
+    name('store');
 });
 
 
