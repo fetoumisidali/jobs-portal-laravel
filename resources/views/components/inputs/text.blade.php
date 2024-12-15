@@ -9,6 +9,7 @@
     <input @if($disabled) disabled @endif  @if($required) required @endif id="{{$id}}" type="{{$type}}" name="{{$name}}"
            class="w-full px-4 py-2 border rounded focus:outline-none
            disabled:bg-gray-100
+           disabled:font-semibold
            {{ $type  == 'number' ? 'no-spin' : ''}}  
             @error($name) border-red-500 @enderror"
            placeholder="{{$placeholder}}" value="{{old($name, $value)}}" />

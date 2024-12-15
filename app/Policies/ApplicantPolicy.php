@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\Applicant;
+use App\Models\Job;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
@@ -63,6 +64,19 @@ class ApplicantPolicy
     {
         return false;
     }
+
+    public function canApply(User $user, Job $job): bool
+    {
+        // Logic for applicant creation
+        if ($job->user_id === $user->id) {
+            return false;
+        }
+
+        $hasApplicant = $job->applicants()->where('user_id', $user->id)->exists();
+
+        return !$hasApplicant;
+    }
+
 
     
 }

@@ -7,6 +7,7 @@ use App\Models\Job;
 use App\Models\User;
 use App\Service\JobService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
@@ -37,8 +38,28 @@ class JobController extends Controller
 
     public function show(Job $job)
     {
+        $user = Auth::user();
+
+        if ($user) {
+            $alreadyApplied = $job->applicants()
+                ->where(
+                    'user_id',
+                    $user->id
+                )->exists();
+
+            $applicant = $job->applicants()
+                ->where('user_id', $user->id)
+                ->first();
+
+            return view(
+                'jobs.show',
+                compact('job', 'alreadyApplied', 'applicant',)
+            );
+        }
+
         return view('jobs.show', compact('job'));
     }
+
 
     public function edit(Job $job)
     {
@@ -61,9 +82,9 @@ class JobController extends Controller
         $this->authorize('delete', $job);
         $this->jobService->deleteJob($job);
 
-        if(request()->query('from') == 'dashboard'){
+        if (request()->query('from') == 'dashboard') {
             return redirect()->back()
-            ->with('success', 'Job Deleted');
+                ->with('success', 'Job Deleted');
         }
 
         return redirect()
@@ -78,6 +99,6 @@ class JobController extends Controller
 
         $jobs = $this->jobService->getJobsByUsername($username);
 
-        return view('jobs.user_jobs', compact('username', 'jobs'));
+        return view('jobs.user-jobs', compact('username', 'jobs'));
     }
 }

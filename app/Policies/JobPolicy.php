@@ -67,10 +67,6 @@ class JobPolicy
     /**
      * Determine whether the user can apply for Job or not.
      */
-    public function apply(User $user, Job $job): bool
-    {
-        return $user->id != $job->user_id;
-    }
 
 
 }

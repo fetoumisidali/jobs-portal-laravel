@@ -94,7 +94,7 @@
                 </div>
 
                 @auth
-                    @can('apply', $job)
+                    @can('canApply', [App\Models\Applicant::class, $job])
                         <button x-data='' x-on:click="$dispatch('open-modal', 'apply-modal')"
                             class="m-4 shadow-sm text-center text-base font-medium
                 text-indigo-700 block w-full px-5 py-2.5 bg-indigo-100
@@ -102,24 +102,10 @@
                             Apply
                         </button>
                         <x-modal name="apply-modal" :show="$errors->any()">
-                            <form action="{{ route('applicant.store',['job' => $job]) }}" method="POST">
+                            <form action="{{ route('applicant.store', ['job' => $job]) }}" method="POST">
                                 @csrf
                                 <h1 class="text-lg text-black mb-3">Apply For <strong>{{ $job->title }}</strong></h1>
-                                <x-inputs.text id="full_name" name="full_name" label="Full Name"
-                                    placeholder="enter your full name" required />
-                                <x-inputs.text type="email" id="email" name="email" label="Email"
-                                    placeholder="enter your email" required />
-                                <x-inputs.text type="phone_number" id="phone_number" name="phone_number" label="phone Number"
-                                    placeholder="enter your phone number" required />
-                                <div class="mb-4">
-                                    <textarea class="w-full focus:outline-none
-                                 border rounded p-3 resize-none"
-                                        placeholder="write your message here"
-                                         name="message" id="message" cols="30" rows="6" required></textarea>
-                                    @error('message')
-                                        <p class="text-red-500 mt-1 text-sm">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                                <x-forms.applicant-form :applicant=[] :editable="true" />
 
                                 <div class="flex space-x-3">
                                     <button type="button" x-on:click="$dispatch('close-modal', 'apply-modal')"
@@ -133,6 +119,28 @@
                             </form>
                         </x-modal>
                     @endcan
+                    @if ($alreadyApplied)
+                        <div
+                            class="m-4 shadow-sm text-center text-base font-medium
+                text-red-500 block w-full px-5 py-2.5 bg-white">
+                            <p x-data="" x-on:click="$dispatch('open-modal', 'your-apply')"
+                                class="hover:underline underline-offset-8 cursor-pointer pb-1">
+                                You Already Applied For This Job , click to See your applicant
+                            </p>
+                        </div>
+                        <x-modal name="your-apply">
+                            <h1
+                                class="text-center text-xl
+                                font-semibold 
+                                 text-black mb-3">
+                                Your Applicant</strong></h1>
+                            <x-forms.applicant-form :applicant="$applicant" :editable="false" />
+                            <button type="button" x-on:click="$dispatch('close-modal', 'your-apply')"
+                                class="py-2 px-4 bg-gray-500 rounded text-white hover:opacity-90">
+                                Close
+                            </button>
+                        </x-modal>
+                    @endif
                 @else
                     <div
                         class="m-4 shadow-sm text-center text-base font-medium

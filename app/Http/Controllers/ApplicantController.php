@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateApplicantRequest;
+use App\Models\Applicant;
 use App\Models\Job;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class ApplicantController extends Controller
     public function store(CreateApplicantRequest $request,Job $job){
 
 
-        $this->authorize("apply",$job);
+        $this->authorize("canApply", [Applicant::class, $job]);
 
         $user = Auth::user();
 
