@@ -1,4 +1,4 @@
-@props(['name', 'show' => false, 'maxWidth' => 'md'])
+@props(['name', 'show' => false, 'maxWidth' => 'md', "id" => null])
 
 @php
     $maxWidth = [
@@ -13,7 +13,7 @@
 
 
 
-<div x-data="{ show: @js($show) }" x-show="show" style="display: {{ $show ? 'block' : 'none' }};"
+<div @if($id) $id @endif x-data="{ show: @js($show) }" x-show="show" style="display: {{ $show ? 'block' : 'none' }};"
     x-on:open-modal.window="$event.detail == '{{ $name }}' ? show = true : null"
     x-on:close-modal.window="$event.detail == '{{ $name }}' ? show = false : null"
     x-init="$watch('show', value => { if (value) { document.body.style.overflow = 'hidden'; } else { document.body.style.overflow = ''; } })"

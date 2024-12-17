@@ -30,6 +30,8 @@ Route::prefix('/jobs')->as('jobs.')->group(function () {
     ->middleware('auth');
     Route::delete('/{job}', [JobController::class, 'destroy'])->name('destroy')
     ->middleware('auth');
+    Route::get('/{job}/applicants',[ApplicantController::class,'index'])->
+    name('applicants')->middleware('auth');
 
 });
 
@@ -52,6 +54,7 @@ Route::prefix('/applicant')
 ->middleware('auth')->as('applicant.')->group(function(){
     Route::post('/{job}', [ApplicantController::class,'store'])->
     name('store');
+
 });
 
 

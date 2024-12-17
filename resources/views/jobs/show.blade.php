@@ -13,6 +13,14 @@
                         Go Back
                     </a>
                     <div class="flex space-x-3">
+                        @can('viewAll',[App\Models\Applicant::class,$job])
+                            <a href="{{route('jobs.applicants',['job' => $job])}}" 
+                                class="bg-green-500 px-4 py-2 rounded text-white
+                        hover:opacity-90">
+                        <i class="fa-regular fa-eye"></i>
+                                Applicants
+                            </a>
+                        @endcan
                         @can('update', $job)
                             <a href={{ route('jobs.edit', ['job' => $job]) }}
                                 class="bg-blue-500 px-4 py-2 rounded text-white

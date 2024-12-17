@@ -14,6 +14,15 @@ class ApplicantController extends Controller
 
     use AuthorizesRequests;
 
+
+    public function index(Job $job){
+        $this->authorize("viewAll", [Applicant::class,$job]);	
+        $applicants = $job->applicants()->paginate(5);
+        return view("applicants.index",
+         compact("job","applicants"));
+
+    }
+
     public function store(CreateApplicantRequest $request,Job $job){
 
 
@@ -30,4 +39,6 @@ class ApplicantController extends Controller
         return redirect()->back()->with('success','You Applied For The Job Successfully');
         
     }
+
+
 }

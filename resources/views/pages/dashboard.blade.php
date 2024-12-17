@@ -50,16 +50,28 @@
                 @forelse($jobs as $job)
                     <div class="m-3 flex items-center justify-between">
                         <div>
-                            <p class="text-lg">{{ $job->title }}</p>
+                            <a href="{{ route('jobs.show', ['job' => $job]) }}"
+                                class="text-lg hover:text-blue-500 hover:underline">{{ $job->title }}</a>
                             <p class="font-bold text-sm text-gray-600">{{ $job->job_type }}</p>
                         </div>
 
                         <div class="flex space-x-2">
+                            @can('viewAll', [App\Models\Applicant::class, $job])
+                                <a href="{{ route('jobs.applicants', ['job' => $job]) }}"
+                                    class="bg-green-500 px-4 py-2 rounded text-white
+                        hover:opacity-90">
+                                    <i class="fa-regular fa-eye"></i>
+                                    Applicants
+                                </a>
+                            @endcan
+
                             <a href={{ route('jobs.edit', ['job' => $job]) }}
                                 class="bg-blue-500 px-4 py-2 rounded text-white
                         hover:opacity-90">
                                 Edit
                             </a>
+
+
                             <form method="POST" onsubmit="return confirm('Are You Sure ?')"
                                 action="{{ route('jobs.destroy', ['job' => $job]) }}?from=dashboard">
                                 @csrf
@@ -73,10 +85,10 @@
                         </div>
                     </div>
                 @empty
+
                     <div class="m-3">
                         <h3 class="text-lg">you don't have any job start and
-                            <a class="text-blue-700 font-medium hover:text-blue-900"
-                                href="{{ route('jobs.create') }}">
+                            <a class="text-blue-700 font-medium hover:text-blue-900" href="{{ route('jobs.create') }}">
                                 Create Job
                             </a>
                         </h3>

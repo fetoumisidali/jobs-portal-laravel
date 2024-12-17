@@ -38,6 +38,9 @@ class JobController extends Controller
 
     public function show(Job $job)
     {
+
+        $alreadyApplied = false;
+        $applicant = null;
         $user = Auth::user();
 
         if ($user) {
@@ -47,10 +50,11 @@ class JobController extends Controller
                     $user->id
                 )->exists();
 
-            $applicant = $job->applicants()
-                ->where('user_id', $user->id)
-                ->first();
-
+            if ($alreadyApplied) {
+                $applicant = $job->applicants()
+                    ->where('user_id', $user->id)
+                    ->first();
+            }
             return view(
                 'jobs.show',
                 compact('job', 'alreadyApplied', 'applicant',)

@@ -1,6 +1,8 @@
 <header x-data="{ 'open': false }" class="bg-blue-900 text-white p-4">
     <div class="container mx-auto justify-between flex items-center ">
-        <h1 class="cursor-pointer select-none text-3xl font-semibold">Jobs Portal</h1>
+
+        <a @if(!request()->routeIs('home')) href='{{route('home')}}' @endif
+             class="cursor-pointer select-none text-3xl font-semibold">Jobs Portal</a>
 
         <nav class="hidden md:flex space-x-4 items-center">
             <x-nav-link routeName="home">Home</x-nav-link>

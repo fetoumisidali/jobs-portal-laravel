@@ -22,7 +22,7 @@ class ApplicantPolicy
      */
     public function view(User $user, Applicant $applicant): bool
     {
-        return false;
+        return ($applicant->user->is($user) || $applicant->job->user->is($user));
     }
 
     /**
@@ -75,6 +75,10 @@ class ApplicantPolicy
         $hasApplicant = $job->applicants()->where('user_id', $user->id)->exists();
 
         return !$hasApplicant;
+    }
+
+    public function viewAll(User $user,Job $job){
+        return $job->user->is($user);
     }
 
 
