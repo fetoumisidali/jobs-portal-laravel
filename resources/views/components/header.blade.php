@@ -17,12 +17,14 @@
             @endauth
 
             @guest
-                <x-nav-button routeName="login" textWhite>Log In</x-nav-button>
-                <x-nav-button routeName="register" color="yellow">Register</x-nav-button>
+                <x-nav-button routeName="login" textWhite class="bg-green-500
+                 hover:bg-green-600">Log In</x-nav-button>
+                <x-nav-button routeName="register" class="bg-yellow-500
+                 hover:bg-yellow-600">Register</x-nav-button>
             @endguest
 
             @auth
-                <x-nav-button routeName="jobs.create" color="yellow" mobile>
+                <x-nav-button routeName="jobs.create" class="bg-yellow-500" mobile>
                     <i class="fa-solid fa-pen-to-square"></i>
                     Create Job
                 </x-nav-button>
@@ -53,7 +55,7 @@
             <x-nav-link routeName="register" :mobile=true>Register</x-nav-link>
         @endguest
         @auth
-            <x-nav-button routeName="jobs.create" color="yellow" mobile>
+            <x-nav-button routeName="jobs.create" class="bg-yellow-500" mobile>
                 <i class="fa-solid fa-pen-to-square"></i>
                 Create Job
             </x-nav-button>

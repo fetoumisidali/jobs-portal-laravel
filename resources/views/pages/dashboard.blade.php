@@ -48,29 +48,31 @@
             <div class="p-4 md:col-span-2 md:rounded-lg md:shadow-xl h-min">
                 <h3 class="text-2xl m-3">User Jobs</h3>
                 @forelse($jobs as $job)
-                    <div class="m-3 flex md:flex-row flex-col md:space-y-0 space-y-2  md:space-x-2 ms:items-center items-start justify-between">
+                    <div
+                        class="m-3 flex md:flex-row flex-col md:space-y-0 space-y-2  md:space-x-2 ms:items-center items-start justify-between">
                         <div>
                             <a href="{{ route('jobs.show', ['job' => $job]) }}"
                                 class="text-lg hover:text-blue-500 hover:underline">{{ $job->title }}</a>
                             <p class="font-bold text-sm text-gray-600">{{ $job->job_type }}</p>
                         </div>
 
-                        <div class="flex space-x-2">
+                        <div class="flex space-x-2 ">
                             @can('viewAll', [App\Models\Applicant::class, $job])
-                                <a href="{{ route('jobs.applicants', ['job' => $job]) }}"
-                                    class="bg-green-500 px-4 py-2 rounded text-white
+                                <div>
+                                    <a href="{{ route('jobs.applicants', ['job' => $job]) }}"
+                                        class="bg-green-500 px-4 inline-block py-2 rounded text-white
                         hover:opacity-90">
-                                    <i class="fa-regular fa-eye"></i>
-                                    Applicants
+                                        <i class="fa-regular fa-eye"></i>
+                                        Applicants
+                                    </a>
+                                </div>
+
+                                <a href={{ route('jobs.edit', ['job' => $job]) }}
+                                    class="bg-blue-500 px-4 inline-block py-2 rounded text-white
+                        hover:opacity-90">
+                                    Edit
                                 </a>
                             @endcan
-
-                            <a href={{ route('jobs.edit', ['job' => $job]) }}
-                                class="bg-blue-500 px-4 py-2 rounded text-white
-                        hover:opacity-90">
-                                Edit
-                            </a>
-
 
                             <form method="POST" onsubmit="return confirm('Are You Sure ?')"
                                 action="{{ route('jobs.destroy', ['job' => $job]) }}?from=dashboard">
