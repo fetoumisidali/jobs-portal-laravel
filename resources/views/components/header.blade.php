@@ -1,8 +1,8 @@
 <header x-data="{ 'open': false }" class="bg-blue-900 text-white p-4">
     <div class="container mx-auto justify-between flex items-center ">
 
-        <a @if(!request()->routeIs('home')) href='{{route('home')}}' @endif
-             class="cursor-pointer select-none text-3xl font-semibold">Jobs Portal</a>
+        <a @if (!request()->routeIs('home')) href='{{ route('home') }}' @endif
+            class="cursor-pointer select-none text-3xl font-semibold">Jobs Portal</a>
 
         <nav class="hidden md:flex space-x-4 items-center">
             <x-nav-link routeName="home">Home</x-nav-link>
@@ -11,33 +11,22 @@
             @auth
 
                 <x-nav-link routeName="dashboard">Dashboard</x-nav-link>
+                <x-nav-link routeName="applicant.index">My Applicants</x-nav-link>
                 <x-nav-link routeName="saved.index">Saved</x-nav-link>
 
             @endauth
 
             @guest
-
-                <x-nav-link routeName="login">Log In</x-nav-link>
-                <x-nav-link routeName="register">Register</x-nav-link>
+                <x-nav-button routeName="login" textWhite>Log In</x-nav-button>
+                <x-nav-button routeName="register" color="yellow">Register</x-nav-button>
             @endguest
 
             @auth
-                <a href={{ route('jobs.create') }}
-                    class="bg-yellow-500 hover:bg-yellow-600 text-black 
-            font-medium  px-4 py-2 rounded
-            hover:opacity-95">
+                <x-nav-button routeName="jobs.create" color="yellow" mobile>
                     <i class="fa-solid fa-pen-to-square"></i>
                     Create Job
-                </a>
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button
-                        class="bg-red-500 hover:bg-red-600 text-white 
-            font-medium  px-4 py-2 rounded
-            hover:opacity-95">
-                        Log Out
-                    </button>
-                </form>
+                </x-nav-button>
+                <x-logout-button />
             @endauth
 
 
@@ -64,22 +53,12 @@
             <x-nav-link routeName="register" :mobile=true>Register</x-nav-link>
         @endguest
         @auth
-            <a href={{ route('jobs.create') }}
-                class="block bg-yellow-500 hover:bg-yellow-600 text-black 
-            font-medium  px-4 py-2 
-            hover:opacity-95">
+            <x-nav-button routeName="jobs.create" color="yellow" mobile>
                 <i class="fa-solid fa-pen-to-square"></i>
                 Create Job
-            </a>
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button
-                    class="bg-red-500 hover:bg-red-600 text-white 
-            font-medium  px-4 py-2 rounded
-            hover:opacity-95">
-                    Log Out
-                </button>
-            </form>
+            </x-nav-button>
+            <br>
+            <x-logout-button mobile />
 
         @endauth
 

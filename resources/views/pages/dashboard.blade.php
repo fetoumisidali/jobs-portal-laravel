@@ -48,7 +48,7 @@
             <div class="p-4 md:col-span-2 md:rounded-lg md:shadow-xl h-min">
                 <h3 class="text-2xl m-3">User Jobs</h3>
                 @forelse($jobs as $job)
-                    <div class="m-3 flex items-center justify-between">
+                    <div class="m-3 flex md:flex-row flex-col md:space-y-0 space-y-2  md:space-x-2 ms:items-center items-start justify-between">
                         <div>
                             <a href="{{ route('jobs.show', ['job' => $job]) }}"
                                 class="text-lg hover:text-blue-500 hover:underline">{{ $job->title }}</a>

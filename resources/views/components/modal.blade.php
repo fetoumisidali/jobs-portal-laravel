@@ -22,9 +22,9 @@
     overflow-y-auto
     
     fixed inset-0 flex items-center justify-center
-    bg-gray-900 bg-opacity-50">
+    bg-gray-900 bg-opacity-50 z-1">
 
-        <div class="bg-white p-6 rounded w-full max-w-md">
+        <div class="bg-white p-6 rounded w-full max-w-md z-1">
             {{ $slot }}
         </div>
 

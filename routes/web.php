@@ -30,7 +30,7 @@ Route::prefix('/jobs')->as('jobs.')->group(function () {
     ->middleware('auth');
     Route::delete('/{job}', [JobController::class, 'destroy'])->name('destroy')
     ->middleware('auth');
-    Route::get('/{job}/applicants',[ApplicantController::class,'index'])->
+    Route::get('/{job}/applicants',[ApplicantController::class, 'jobApplicants'])->
     name('applicants')->middleware('auth');
 
 });
@@ -50,10 +50,13 @@ Route::middleware('auth')->group(function(){
     ->name('profile.destroy');
 });
 
-Route::prefix('/applicant')
+Route::prefix('/applicants')
 ->middleware('auth')->as('applicant.')->group(function(){
+
     Route::post('/{job}', [ApplicantController::class,'store'])->
     name('store');
+    Route::get('/',
+    [ApplicantController::class,'index'])->name('index');
 
 });
 

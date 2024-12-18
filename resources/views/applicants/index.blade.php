@@ -1,78 +1,73 @@
 <x-app-layout>
     <x-slot name="title">
-        {{ $job->title }} applicants
+        My applicants
     </x-slot>
 
 
-    <div>
-        <h1 class="text-3xl my-6">{{ $job->title }} Applicants:</h1>
-
+    <div class="md:mx-0 mx-6">
+        <h1 class="text-3xl my-6">My Applicants:</h1>
         @if ($applicants->isNotEmpty())
-            <div class="my-6">
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        <tr>
-                            <th scope="col" class="px-6 py-3">
-                                FullName
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                Email
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                PhoneNumber
-                            </th>
-                            <th scope="col" class="px-6 py-3">
-                                <span>Message</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
+            <table class="w-full md:w-2/3 border-separate rounded  mx-auto divide-y divide-gray-200 border  mt-4">
+                <thead>
+                    <tr>
+                        <th class="px-6 py-3 bg-gray-50 text-left">
+                            <span class="text-xs leading-4 font-bold text-gray-600  tracking-wider">Job</span>
+                        </th>
+                        <th class="px-6 py-3 bg-gray-50 text-left">
+                            <span class="text-xs leading-4 font-bold text-gray-600  tracking-wider">Applicant</span>
+                        </th>
+                        <th class="px-6 py-3 bg-gray-50 text-left">
+                        </th>
+                    </tr>
+                </thead>
 
-
-                        @foreach ($applicants as $applicant)
-                            <tr
-                                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                                <th scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $applicant->full_name }}
-                                </th>
-                                <td class="px-6 py-4 text-left">
-                                    {{ $applicant->email }}
-                                </td>
-                                <td class="px-6 py-4 text-left">
-                                    {{ $applicant->phone_number }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    <button x-data x-on:click="$dispatch('open-modal', 'message-modal-{{$applicant->id}}')"
-                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                        <i class="fa-regular fa-eye"></i>
-                                        Message
+                <tbody class="bg-white divide-y divide-gray-200 divide-solid">
+                    @foreach ($applicants as $applicant)
+                        <tr class="bg-white">
+                            <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
+                                <a class="text-blue-500 hover:underline"
+                                    href={{ route('jobs.show', ['job' => $applicant->job]) }}>
+                                    {{ $applicant->job->title }}
+                                </a>
+                            </td>
+                            <td class="px-6 py-4 whitespace-no-wrap text-sm leading-5 text-gray-900">
+                                <button x-data x-on:click="$dispatch('open-modal', 'applicant-{{ $applicant->id }}')"
+                                    class="text-blue-500 hover:underline">
+                                    Show Applicant
+                                </button>
+                                <x-modal name="applicant-{{ $applicant->id }}">
+                                    <h1
+                                        class="text-center text-xl
+                                font-semibold 
+                                 text-black mb-3">
+                                        <span class="text-blue-500">{{ $applicant->job->title }}</span>
+                                        Applicant</strong>
+                                    </h1>
+                                    <x-forms.applicant-form :applicant="$applicant" :editable="false" />
+                                    <button type="button"
+                                        x-on:click="$dispatch('close-modal', 'applicant-{{ $applicant->id }}')"
+                                        class="py-2 px-4 bg-gray-500 rounded text-white hover:opacity-90">
+                                        Close
                                     </button>
-
-                                    <x-modal name="message-modal-{{$applicant->id}}">
-                                        <h1 class="text-lg text-black">{{$applicant->full_name}} Message :</h1>
-                                        <textarea class="bg-gray-200 rounded font-medium w-full my-3 p-3 resize-none"
-                                        cols="30" rows="6"
-                                         disabled>{{$applicant->message}}</textarea>
-
-                                         <button
-                                         x-on:click="$dispatch('close-modal', 'message-modal-{{$applicant->id}}')"
-                                         class="px-4 py-2 bg-gray-500 text-white rounded hover:opacity-90">
-                                            Close
-                                         </button>
-                                    </x-modal>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @else
-                <h1 class="text-3xl my-6">No Applicants</h1>
-
+                                </x-modal>
+                            </td>
+                            <td>
+                                <button class="text-red-500 hover:underline">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <div class="w-full md:w-2/3 mx-auto my-3">
+                {{ $applicants->links() }}
+            </div>
+        @else
+            <h1 class="text-2xl">You Have No Applicants</h1>
         @endif
-    </div>
-    </div>
 
+    </div>
 
 
 
