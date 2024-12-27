@@ -1,0 +1,125 @@
+[33mcommit af3feae510ea3cdcc7b9d2d778609d2b94c36e4d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Fri Dec 27 23:01:11 2024 +0100
+
+    edit
+
+[33mcommit 6519b8cfdf12be1bed1667f2fa3c8367aa2c1c46[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Fri Dec 27 20:17:45 2024 +0100
+
+    link fix
+
+[33mcommit 228796063daab5aa69bff858c6b5f003a4866b2c[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Fri Dec 27 20:16:28 2024 +0100
+
+    link
+
+[33mcommit 553a9668d2f86f03fab50b81212438d1f4ebecfc[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Fri Dec 27 20:15:03 2024 +0100
+
+    add link to readme
+
+[33mcommit 68da14865eabdda7b38b9ab45d154114ea71cfcd[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Fri Dec 27 20:13:20 2024 +0100
+
+    dashboard
+
+[33mcommit 31d93fd6c504737da47a0988ded7c36269842596[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Wed Dec 18 16:35:41 2024 +0100
+
+    fix vite and nav-button
+
+[33mcommit f21543fc131ef5f8c9914c01836112eee0fe44d6[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Wed Dec 18 15:19:35 2024 +0100
+
+    applicants working
+
+[33mcommit 29545d4f312afd3dc9d4e30213a5d090915a4cbf[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Tue Dec 17 23:22:31 2024 +0100
+
+    applicant fully works
+
+[33mcommit 34dbf3a2e15cfd30fb8aa2cc8eda4c64f3442c64[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Sun Dec 15 22:53:21 2024 +0100
+
+    create component for applicant so use can see hist applicant
+
+[33mcommit 565b76b71343adb47b73024dc40f48933ca6121c[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Sat Dec 14 17:36:01 2024 +0100
+
+    applicant and modal
+
+[33mcommit 8651b6246bbad1b5df01253e339c56b21acf67f5[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Sat Dec 14 00:24:48 2024 +0100
+
+    change name to username and make it unique
+
+[33mcommit f928fb335c1759730efd2a300ea7fd020f478417[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Fri Dec 13 23:25:33 2024 +0100
+
+    search working
+
+[33mcommit 7e00f785ae2f2dec5d41c368b2be878371c79f2c[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Fri Dec 13 22:43:00 2024 +0100
+
+    add bookmark
+
+[33mcommit 7686c7b3f4628e78074f81160ec649b3f0f5f8e1[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Thu Dec 12 20:55:52 2024 +0100
+
+    dashborard other changes
+
+[33mcommit 86c847d63e2887375fb5f6f98923bf96d4d5f316[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Thu Dec 12 17:46:34 2024 +0100
+
+    readme update
+
+[33mcommit 134502d08a28f0d237158dd119259be899da29a3[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Thu Dec 12 17:34:41 2024 +0100
+
+    more fix for the 403 and 404 pages
+
+[33mcommit b9dd6b7d4122c8021cfcb33bcccc16031c974593[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Thu Dec 12 14:16:23 2024 +0100
+
+    403 page
+
+[33mcommit 747a8b18bacef8629765ddb5df711093805a4fac[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Thu Dec 12 13:31:17 2024 +0100
+
+    login & register with custom 404 page with reformat controller
+
+[33mcommit 6e4863253c22918aa1fd35db45ac361012d271e1[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Wed Dec 11 23:19:15 2024 +0100
+
+    fix checkbox to accept a list of items
+
+[33mcommit 0377e2960df5a75470b8d088de484c1d1f47cdbd[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Wed Dec 11 21:33:43 2024 +0100
+
+    add alert
+
+[33mcommit 94cbf5e8d689ff91f136645bb262cbdf6a227eeb[m
+Author: fetoumisidali <fetoumisidali@gmail.com>
+Date:   Wed Dec 11 21:05:01 2024 +0100
+
+    first commit home jobs create job pages are ready
