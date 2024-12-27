@@ -6,6 +6,9 @@ This App Created Using Laravel 11 with TailwindCss
 laravel new jobs-portal
 ```
 
+you can try it <a href="http://my-laravel-app.great-site.net/">click here</a>
+
+
 ## Screenshots
 
 ### Home Page (Desktop)
