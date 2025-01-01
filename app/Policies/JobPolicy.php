@@ -13,7 +13,7 @@ class JobPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return $user->email == "sidali@user.com";
     }
 
     /**
@@ -21,7 +21,7 @@ class JobPolicy
      */
     public function view(User $user, Job $job): bool
     {
-        return false;
+        return true;
     }
 
     /**
