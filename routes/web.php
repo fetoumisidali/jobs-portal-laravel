@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', HomeController::class)->name('home');
-Route::get('/me', function(){
+Route::get('/me', function () {
     return view('pages.me');
 });
 
@@ -18,47 +18,45 @@ Route::get('/me', function(){
 Route::prefix('/jobs')->as('jobs.')->group(function () {
     Route::get('/', [JobController::class, 'index'])->name('index');
     Route::get('/user/{username}', [JobController::class, 'showUserJobs'])
-    ->name('user_jobs');
+        ->name('user_jobs');
     Route::get('/create', [JobController::class, 'create'])->name('create')
-    ->middleware('auth');
+        ->middleware('auth');
     Route::post('/', [JobController::class, 'store'])->name('store')
-    ->middleware('auth');
+        ->middleware('auth');
     Route::get('/{job}', [JobController::class, 'show'])->name('show');
     Route::get('/{job}/edit', [JobController::class, 'edit'])->name('edit')
-    ->middleware('auth');
+        ->middleware('auth');
     Route::put('/{job}', [JobController::class, 'update'])->name('update')
-    ->middleware('auth');
+        ->middleware('auth');
     Route::delete('/{job}', [JobController::class, 'destroy'])->name('destroy')
-    ->middleware('auth');
-    Route::get('/{job}/applicants',[ApplicantController::class, 'jobApplicants'])->
-    name('applicants')->middleware('auth');
-
+        ->middleware('auth');
+    Route::get('/{job}/applicants', [ApplicantController::class, 'jobApplicants'])->name('applicants')->middleware('auth');
 });
 
 Route::prefix('/saved')->middleware('auth')->as('saved.')->group(function () {
-    Route::get('/', [BookmarkController::class,'index'])->name('index');
+    Route::get('/', [BookmarkController::class, 'index'])->name('index');
     Route::post('/{job}', [BookmarkController::class, 'store'])->name('store');
     Route::delete('/{job}', [BookmarkController::class, 'destroy'])->name('destroy');
 });
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])
-    ->name('dashboard');
+        ->name('dashboard');
     Route::patch('profile', [ProfileController::class, 'update'])
-    ->name('profile.update');
+        ->name('profile.update');
     Route::delete('profile', [ProfileController::class, 'destroy'])
-    ->name('profile.destroy');
+        ->name('profile.destroy');
 });
 
 Route::prefix('/applicants')
-->middleware('auth')->as('applicant.')->group(function(){
+    ->middleware('auth')->as('applicant.')->group(function () {
 
-    Route::post('/{job}', [ApplicantController::class,'store'])->
-    name('store');
-    Route::get('/',
-    [ApplicantController::class,'index'])->name('index');
-
-});
+        Route::post('/{job}', [ApplicantController::class, 'store'])->name('store');
+        Route::get(
+            '/',
+            [ApplicantController::class, 'index']
+        )->name('index');
+    });
 
 
 
