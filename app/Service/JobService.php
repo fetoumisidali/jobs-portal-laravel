@@ -58,11 +58,11 @@ class JobService
     public function createJob(CreateJobRequest $createJobRequest)
     {
         $user = Auth::user();
-        $user->jobList()->create($createJobRequest->all());
+        $user->jobList()->create($createJobRequest->validated());
     }
     public function update(Job $job, CreateJobRequest $request)
     {
-        $job->update($request->all());
+        $job->update($request->validated());
     }
     public function deleteJob(Job $job)
     {
