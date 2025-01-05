@@ -33,7 +33,7 @@ class ApplicantController extends Controller
 
         $user = Auth::user();
 
-        $data = $request->all();
+        $data = $request->validated();
 
         $data['job_id'] = $job->id;
 
